@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FaceStyle - Your AI Hairstyle Companion</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: linear-gradient(135deg, #565668 0%, #16213e 50%, #1a1a2e 100%);
+            color: #e2e8f0;
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(74, 222, 128, 0.2);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #4ade80;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: #e2e8f0;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #4ade80;
+            background: rgba(74, 222, 128, 0.1);
+        }
+
+        .nav-link.try-now {
+            background: #4ade80;
+            color: #1a1a2e;
+        }
+
+        .nav-link.try-now:hover {
+            background: #3aa364;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 6rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/api/placeholder/1200/800') center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            color: #4ade80;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: #e2e8f0;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+
+        /* Purpose Section */
+        .purpose {
+            padding: 6rem 2rem;
+            background: rgba(26, 26, 46, 0.8);
+        }
+
+        .purpose-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .purpose-card {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .purpose-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .purpose-title {
+            color: #4ade80;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight-text {
+            color: #4ade80;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .purpose-text {
+            color: #e2e8f0;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        /* Team Section */
+        .team {
+            padding: 6rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #4ade80;
+            margin-bottom: 3rem;
+        }
+
+        .team-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .team-member {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            border: 4px solid #4ade80;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .purpose-grid,
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <img src="img/hair.png" alt="FaceStyle Logo" style="height: 40px;">
+                FaceStyle
+            </a>
+            <div class="nav-links">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#purpose" class="nav-link">About</a>
+                <a href="#team" class="nav-link">Team</a>
+
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Discover Your Perfect Hairstyle<br>With AI</h1>
+            <p class="hero-subtitle">Transform your look with personalized hairstyle recommendations powered by advanced
+                facial analysis technology.</p>
+
+        </div>
+    </section>
+
+    <section id="purpose" class="purpose">
+        <div class="purpose-grid">
+            <div class="purpose-card">
+                <h2 class="purpose-title">Our Purpose</h2>
+                <p class="purpose-text">
+                    FaceStyle leverages advanced AI technology to analyze facial structures and recommend the most
+                    flattering hairstyles. Our mission is to help individuals discover their perfect look with
+                    data-driven precision.
+                </p>
+            </div>
+            <div class="purpose-card">
+                <h2 class="purpose-title">Why We Created FaceStyle</h2>
+                <h3 class="highlight-text">The Problem</h3>
+                <p class="purpose-text">
+                    Finding the perfect hairstyle that complements your unique features can be overwhelming, with
+                    endless options and little guidance tailored to you.
+                </p>
+                <h3 class="highlight-text">Our Solution</h3>
+                <p class="purpose-text">
+                    We developed FaceStyle to simplify this process. By using advanced AI technology, our platform
+                    analyzes your facial features to deliver scientifically personalized hairstyle recommendations,
+                    saving you time and helping you feel confident in your look.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="team">
+        <h2 class="section-title">Meet Our Team</h2>
+        <div class="team-grid">
+            <div class="team-member">
+                <img src="img/462567194_925492979074184_816928823022024617_n.jpg" alt="Rhys Myrrh C. Loreno">
+                <h3>Rhys Myrrh C. Loreno</h3>
+                <p>Hipster</p>
+            </div>
+            <div class="team-member">
+                <img src="img/462542884_1277471510106494_8632158024632403360_n.jpg" alt="Joshua Mari Rio">
+                <h3>Joshua Mari Rio</h3>
+                <p>Hustler</p>
+            </div>
+            <div class="team-member">
+                <img src="img/465040138_1544336996956904_4883656945448730112_n.jpg" alt="Ferdinand Baculado Jr">
+                <h3>Ferdinand Baculado Jr</h3>
+                <p>Hacker</p>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
